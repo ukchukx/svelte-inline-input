@@ -7,6 +7,8 @@ export let type = 'text';
 export let placeholder = '';
 export let labelClasses = '';
 export let inputClasses = '';
+export let rows = 2;
+export let cols = 20;
 
 let editing = false;
 let inputEl;
@@ -15,9 +17,10 @@ let label;
 // Computed
 $: isText = type === 'text';
 $: isNumber = type === 'number';
+$: isTextArea = type === 'textarea';
 $: if (isNumber) {
       label = value === '' ? placeholder : value;
-    } else if (isText) {
+    } else if (isText || isTextArea) {
       label = value ? value : placeholder;
     }
 
@@ -53,6 +56,16 @@ const handleBlur = (_) => {
     on:input={handleInput}
     on:keyup={handleEnter}
     on:blur={handleBlur}>
+{:else if editing && isTextArea}
+  <textarea
+    class={inputClasses}
+    bind:this={inputEl}
+    {placeholder}
+    {value}
+    {rows}
+    {cols}
+    on:input={handleInput}
+    on:blur={handleBlur} />
 {:else}
   <span 
     class={labelClasses}
