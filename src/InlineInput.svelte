@@ -9,19 +9,24 @@ export let labelClasses = '';
 export let inputClasses = '';
 export let rows = 2;
 export let cols = 20;
+export let options = [];
 
 let editing = false;
 let inputEl;
 let label;
+let selectedIndex = options.findIndex(o => o.value === value);
 
 // Computed
 $: isText = type === 'text';
 $: isNumber = type === 'number';
 $: isTextArea = type === 'textarea';
+$: isSelect = type === 'select';
 $: if (isNumber) {
       label = value === '' ? placeholder : value;
     } else if (isText || isTextArea) {
       label = value ? value : placeholder;
+    } else { // Select
+      label = selectedIndex === -1 ? placeholder : options[selectedIndex].label;
     }
 
 const toggle = async (_) => {
@@ -43,6 +48,11 @@ const handleEnter = (e) => {
 
 const handleBlur = (_) => {
   toggle();
+};
+
+const handleChange = (e) => {
+  selectedIndex = placeholder ? e.target.selectedIndex - 1 : e.target.selectedIndex;
+  value = options[selectedIndex].value;
 };
 </script>
 
@@ -66,10 +76,32 @@ const handleBlur = (_) => {
     {cols}
     on:input={handleInput}
     on:blur={handleBlur} />
+{:else if editing && isSelect}
+  <select 
+    class={inputClasses}
+    bind:this={inputEl}
+    {value}
+    on:blur={handleBlur}>
+    {#if placeholder}
+      <option selected value disabled>{placeholder}</option>
+    {/if}
+    {#each options as { label, value }, i}
+      <option 
+        key={i}
+        {value}>
+        {label}
+      </option>
+    {/each}
+  </select>
 {:else}
   <span 
     class={labelClasses}
     on:click={toggle}>
-  {label}
+    {label}
+    <slot name="selectCaret">
+      {#if isSelect}
+        <span>&#9660;</span>
+      {/if}
+    </slot>
   </span>
 {/if}
