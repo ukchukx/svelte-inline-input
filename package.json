@@ -1,12 +1,17 @@
 {
   "name": "svelte-inline-input",
+  "version": "1.0.0",
+  "description": "A Svelte component for inline editable inputs.",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
+  "unpkg": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build"
   },
+  "author": "Uk Chukundah",
+  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^6.0.0",
     "rollup": "^1.20.0",
@@ -14,8 +19,15 @@
     "svelte": "^3.0.0"
   },
   "keywords": [
-    "svelte"
+    "svelte",
+    "inline",
+    "editable",
+    "input"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ukchukx/svelte-inline-input"
+  },
   "files": [
     "src",
     "dist"
