@@ -1,5 +1,7 @@
 <script>
-import { tick } from 'svelte';
+import { tick, createEventDispatcher } from 'svelte';
+
+const dispatch = createEventDispatcher();
 
 // Props
 export let value = '';
@@ -48,6 +50,7 @@ const handleEnter = (e) => {
 
 const handleBlur = (_) => {
   toggle();
+  dispatch('blur', value);
 };
 
 const handleChange = (e) => {

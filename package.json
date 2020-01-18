@@ -1,6 +1,6 @@
 {
   "name": "svelte-inline-input",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Svelte component for inline editable inputs.",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",

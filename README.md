@@ -44,6 +44,12 @@ See the props table below for the available options.
 | cols | integer | Textarea columns | 20 |
 | options | array | Provides the options for selects. Each object should have the format `{label: x, value: x}` | [] |
 
+### Events
+
+| Event | Description |
+|:--|:--|
+| blur | Fired when the input element loses focus. Also provides the input element's value |
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
