@@ -60,7 +60,7 @@ const handleChange = (e) => {
 </script>
 
 {#if editing && (isText || isNumber)}
-  <input 
+  <input
     class={inputClasses}
     bind:this={inputEl}
     {type}
@@ -80,16 +80,17 @@ const handleChange = (e) => {
     on:input={handleInput}
     on:blur={handleBlur} />
 {:else if editing && isSelect}
-  <select 
+  <select
     class={inputClasses}
     bind:this={inputEl}
+    on:change={handleChange}
     {value}
     on:blur={handleBlur}>
     {#if placeholder}
       <option selected value disabled>{placeholder}</option>
     {/if}
     {#each options as { label, value }, i}
-      <option 
+      <option
         key={i}
         {value}>
         {label}
@@ -97,7 +98,7 @@ const handleChange = (e) => {
     {/each}
   </select>
 {:else}
-  <span 
+  <span
     class={labelClasses}
     on:click={toggle}>
     {label}
