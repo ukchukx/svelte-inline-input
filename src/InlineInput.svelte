@@ -8,6 +8,7 @@ export let value = '';
 export let type = 'text';
 export let placeholder = '';
 export let labelClasses = '';
+export let labelStyles = '';
 export let inputClasses = '';
 export let rows = 2;
 export let cols = 20;
@@ -100,6 +101,7 @@ const handleChange = (e) => {
 {:else}
   <span
     class={labelClasses}
+    style={labelStyles}
     on:click={toggle}>
     {label}
     <slot name="selectCaret">
