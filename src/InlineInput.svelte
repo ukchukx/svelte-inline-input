@@ -101,11 +101,6 @@ const handleChange = (e) => {
   <span
     class={labelClasses}
     on:click={toggle}>
-    {label}
-    <slot name="selectCaret">
-      {#if isSelect}
-        <span>&#9660;</span>
-      {/if}
-    </slot>
+    {label}<slot name="selectCaret">{#if isSelect}<span>&#9660;</span>{/if}</slot>
   </span>
 {/if}
